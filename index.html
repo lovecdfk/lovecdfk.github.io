@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduRead - Educational EPUB Reader</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>EduRead</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#library"><i class="fas fa-book"></i> Library</a></li>
+                <li><a href="#upload"><i class="fas fa-cloud-upload-alt"></i> Upload</a></li>
+                <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+            </ul>
+            <button class="btn-login">Login</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Revolutionizing Educational Reading</h1>
+            <p class="subtitle">Upload, read, and study EPUB textbooks with our advanced in-browser reader. Built for students and educators.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" id="uploadTrigger">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload EPUB
+                </button>
+                <button class="btn-secondary" id="tryDemo">
+                    <i class="fas fa-play"></i> Try Demo Book
+                </button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="reader-preview">
+                <div class="preview-header">
+                    <div class="preview-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                </div>
+                <div class="preview-content">
+                    <h3 class="preview-title">Sample Educational Text</h3>
+                    <p class="preview-text">The EPUB format allows for reflowable content, making it perfect for educational materials across all devices.</p>
+                    <div class="preview-page">Page 1 of 10</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section class="upload-section" id="upload">
+        <h2>Upload Your EPUB Files</h2>
+        <p class="section-subtitle">Supported formats: .epub, .epub3. Max file size: 50MB</p>
+        
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">
+                <i class="fas fa-file-upload"></i>
+            </div>
+            <h3>Drag & Drop EPUB Files Here</h3>
+            <p>or click to browse</p>
+            <input type="file" id="epubUpload" accept=".epub,.epub3" hidden>
+            <div class="upload-progress" id="uploadProgress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">Uploading: 0%</span>
+            </div>
+        </div>
+        
+        <div class="recent-uploads">
+            <h3>Recent Uploads</h3>
+            <div class="uploads-list" id="uploadsList">
+                <!-- Dynamic content from JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Library Section -->
+    <section class="library-section" id="library">
+        <h2>Educational Library</h2>
+        <p class="section-subtitle">Browse our collection of educational EPUB books</p>
+        
+        <div class="book-filters">
+            <button class="filter-btn active" data-filter="all">All Subjects</button>
+            <button class="filter-btn" data-filter="science">Science</button>
+            <button class="filter-btn" data-filter="history">History</button>
+            <button class="filter-btn" data-filter="literature">Literature</button>
+            <button class="filter-btn" data-filter="mathematics">Mathematics</button>
+        </div>
+        
+        <div class="books-grid" id="booksGrid">
+            <!-- Dynamic content from JS -->
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2>Advanced Reading Features</h2>
+        <p class="section-subtitle">Everything you need for effective studying</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-highlighter"></i>
+                </div>
+                <h3>Highlight Text</h3>
+                <p>Mark important passages with customizable colors for better retention.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bookmark"></i>
+                </div>
+                <h3>Bookmarks</h3>
+                <p>Save your reading position and create bookmarks for quick reference.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Search Text</h3>
+                <p>Find specific terms or concepts throughout the entire book instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <h3>Reading Modes</h3>
+                <p>Switch between day, night, and sepia modes to reduce eye strain.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-text-height"></i>
+                </div>
+                <h3>Text Customization</h3>
+                <p>Adjust font size, style, and spacing for optimal readability.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Multi-language</h3>
+                <p>Support for books in various languages with dictionary integration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EPUB Reader Modal -->
+    <div class="reader-modal" id="readerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="bookTitle">EPUB Reader</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="epubFrame" src="epub-reader/epub-reader.html" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-book-open"></i> EduRead</h3>
+                <p>An educational technology platform for EPUB reading and studying.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#library">Library</a></li>
+                    <li><a href="#upload">Upload</a></li>
+                    <li><a href="#features">Features</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Technology</h4>
+                <ul>
+                    <li>EPUB.js</li>
+                    <li>JavaScript</li>
+                    <li>HTML5/CSS3</li>
+                    <li>GitHub Pages</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Deployable on GitHub Pages | &copy; 2023 EduRead Educational Tech</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
