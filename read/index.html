@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPUB Reader</title>
+    <link rel="stylesheet" href="epub.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="reader-container">
+        <!-- Reader Header -->
+        <header class="reader-header">
+            <div class="reader-controls-left">
+                <button id="prevChapter" class="control-btn" title="Previous Chapter">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="nextChapter" class="control-btn" title="Next Chapter">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <span class="chapter-info">Chapter 1 of 12</span>
+            </div>
+            
+            <div class="reader-title">
+                <h2 id="currentBookTitle">Educational EPUB Reader</h2>
+            </div>
+            
+            <div class="reader-controls-right">
+                <button id="settingsToggle" class="control-btn" title="Reading Settings">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+                <button id="bookmarkToggle" class="control-btn" title="Bookmark">
+                    <i class="far fa-bookmark"></i>
+                </button>
+                <button id="fullscreenToggle" class="control-btn" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Reader Content Area -->
+        <main class="reader-content">
+            <div class="content-container">
+                <!-- Book content will be rendered here by EPUB.js -->
+                <div class="epub-content" id="viewer">
+                    <div class="page-loading">
+                        <div class="spinner"></div>
+                        <p>Loading EPUB content...</p>
+                    </div>
+                    
+                    <!-- Fallback content for demo -->
+                    <div class="demo-content">
+                        <h1>Introduction to Physics</h1>
+                        <h2>Chapter 1: The Fundamentals</h2>
+                        <p>Physics is the natural science that studies matter, its motion and behavior through space and time, and the related entities of energy and force. Physics is one of the most fundamental scientific disciplines, and its main goal is to understand how the universe behaves.</p>
+                        
+                        <h3>1.1 Scientific Method</h3>
+                        <p>The scientific method is a systematic way of learning about the world around us and answering questions. The key steps in the scientific method are:</p>
+                        <ul>
+                            <li><strong>Observation:</strong> Noticing and describing events or processes in a careful, orderly way.</li>
+                            <li><strong>Hypothesis:</strong> A testable explanation for observations.</li>
+                            <li><strong>Experiment:</strong> A procedure designed to test a hypothesis.</li>
+                            <li><strong>Analysis:</strong> Interpreting the data from the experiment and drawing conclusions.</li>
+                            <li><strong>Conclusion:</strong> Determining whether the hypothesis was supported or refuted.</li>
+                        </ul>
+                        
+                        <p>Physics uses the scientific method to develop theories and laws that describe the behavior of the physical world. These theories are continually tested through observation and experimentation.</p>
+                        
+                        <div class="page-number">Page 1</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reading Progress -->
+            <div class="reading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 8%;"></div>
+                </div>
+                <div class="progress-info">
+                    <span>8% completed</span>
+                    <span>Page 1 of 320</span>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Reader Footer -->
+        <footer class="reader-footer">
+            <div class="footer-controls">
+                <button id="fontDecrease" class="control-btn" title="Decrease Font Size">
+                    <i class="fas fa-minus"></i> A
+                </button>
+                <button id="fontIncrease" class="control-btn" title="Increase Font Size">
+                    A <i class="fas fa-plus"></i>
+                </button>
+                <button id="themeToggle" class="control-btn" title="Change Theme">
+                    <i class="fas fa-palette"></i>
+                </button>
+                <button id="searchToggle" class="control-btn" title="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button id="tocToggle" class="control-btn" title="Table of Contents">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </footer>
+        
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settingsPanel">
+            <div class="panel-header">
+                <h3>Reading Settings</h3>
+                <button class="close-panel" id="closeSettings">&times;</button>
+            </div>
+            <div class="panel-content">
+                <div class="setting-group">
+                    <h4>Theme</h4>
+                    <div class="theme-options">
+                        <button class="theme-option active" data-theme="light">
+                            <div class="theme-preview light-theme"></div>
+                            <span>Light</span>
+                        </button>
+                        <button class="theme-option" data-theme="sepia">
+                            <div class="theme-preview sepia-theme"></div>
+                            <span>Sepia</span>
+                        </button>
+                        <button class="theme-option" data-theme="dark">
+                            <div class="theme-preview dark-theme"></div>
+                            <span>Dark</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h4>Font Size</h4>
+                    <div class="font-slider-container">
+                        <span class="font-size-label">A</span>
+                        <input type="range" id="fontSizeSlider" min="14" max="24" value="18" step="1">
+                        <span class="font-size-label">A</span>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h4>Font Family</h4>
+                    <select id="fontFamilySelect">
+                        <option value="'Noto Serif', serif">Noto Serif</option>
+                        <option value="'Times New Roman', serif">Times New Roman</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Courier New', monospace">Courier New</option>
+                    </select>
+                </div>
+                
+                <div class="setting-group">
+                    <h4>Line Height</h4>
+                    <select id="lineHeightSelect">
+                        <option value="1.5">Normal</option>
+                        <option value="1.8">Wide</option>
+                        <option value="2.0">Extra Wide</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Table of Contents Panel -->
+        <div class="toc-panel" id="tocPanel">
+            <div class="panel-header">
+                <h3>Table of Contents</h3>
+                <button class="close-panel" id="closeToc">&times;</button>
+            </div>
+            <div class="panel-content">
+                <ul class="toc-list">
+                    <li class="toc-item active"><a href="#">Chapter 1: The Fundamentals</a></li>
+                    <li class="toc-item"><a href="#">Chapter 2: Motion in One Dimension</a></li>
+                    <li class="toc-item"><a href="#">Chapter 3: Vectors and Motion in Two Dimensions</a></li>
+                    <li class="toc-item"><a href="#">Chapter 4: Forces and Newton's Laws</a></li>
+                    <li class="toc-item"><a href="#">Chapter 5: Work and Energy</a></li>
+                    <li class="toc-item"><a href="#">Chapter 6: Momentum and Collisions</a></li>
+                    <li class="toc-item"><a href="#">Chapter 7: Rotational Motion</a></li>
+                    <li class="toc-item"><a href="#">Chapter 8: Gravity and Planetary Motion</a></li>
+                    <li class="toc-item"><a href="#">Chapter 9: Fluids</a></li>
+                    <li class="toc-item"><a href="#">Chapter 10: Thermodynamics</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Search Panel -->
+        <div class="search-panel" id="searchPanel">
+            <div class="panel-header">
+                <h3>Search in Book</h3>
+                <button class="close-panel" id="closeSearch">&times;</button>
+            </div>
+            <div class="panel-content">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search for terms, concepts...">
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-results">
+                    <p>Enter a search term to find content in this book.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="epub-reader.js"></script>
+</body>
+</html>
